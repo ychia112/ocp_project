@@ -1,4 +1,4 @@
-# Open Catalyst 2022 
+# Open Catalyst 2022 project
 The dataset of this project (OC2022 IS2RE) is obtained from here : [Open Catalyst Project](https://opencatalystproject.org/)
 
 ## Project Description
@@ -58,10 +58,10 @@ Train/Val LMDBs additionally contain the following attributes:
 * `y_relaxed` - [1] DFT energy of the relaxed structure
 * `pos_relaxed` - [K x 3] Relaxed structure positional information of all atoms in the system (x, y, z cartesian coordinates)
 
-**Build 3D grid world**
+**Build 3D grid world**  
 This code is designed to assign atomic properties to a 3D grid based on the distance of each grid point to the nearest atom. The algorithm works by calculating the distance between each grid point and all the atoms in the system and selecting the shortest distance. If this distance is less than the radius of the atom, the grid point is assigned the properties of that atom, including its atomic weight.
 
-**Save the data**
+**Save the data**  
 The training data is saved as `'system_models.npz'`, and the label (y_relaxed, which is the relaxed energy) is saved as a `.py` file, it is convenient to import it in the 3Dconv.py code.
 
 ### IV. 3D Convolution Neural Network (3Dconv.py)
