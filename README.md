@@ -64,6 +64,9 @@ This code is designed to assign atomic properties to a 3D grid based on the dist
 **Save the data**  
 The training data is saved as `'system_models.npz'`, and the label (y_relaxed, which is the relaxed energy) is saved as a `.py` file, it is convenient to import it in the 3Dconv.py code.
 
+> **Note**  
+> There are 500 3D grid systems are built, feel free to contact me and get the data for testing!
+
 ### IV. 3D Convolution Neural Network (3Dconv.py)
 
 After building the 3D grid system, we can start using the data to do 3D convolution.
