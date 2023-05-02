@@ -2,13 +2,12 @@
 """
 Created on Wed Apr 19 14:59:45 2023
 
-@author: jacky
+@author: Yu Chia Cheng
 """
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
 import os
-os.chdir("C:/Users/jacky/OneDrive/桌面/s2ef_train_200K")
 #%%
 # 列出所有可用的 GPU
 gpus = tf.config.list_physical_devices('GPU')
@@ -18,7 +17,10 @@ if gpus:
 else:
     print("沒有可用的 GPU")
 
-#%%
+from tensorflow.python.client import device_lib
+print(device_lib.list_local_devices())
+
+#%% import the training data
 data = np.load('system_models.npz')
 datas = [data[key] for key in data.keys()]
 for i, data in enumerate(datas):
@@ -26,18 +28,15 @@ for i, data in enumerate(datas):
     datas[i] = np.expand_dims(data, axis=-1)
 
 x_train = np.concatenate(datas, axis=0)
-#%%
+#%% import the data label
 from system_labels import system_labels
 y_train = system_labels
 y_train = np.round(np.array(y_train)).astype(int)
-#%%
+
+#%% split data into train and test
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.2, random_state=0)
-
-#%%
-from tensorflow.python.client import device_lib
-print(device_lib.list_local_devices())
 
 #%%
 # 使用GPU訓練模型
@@ -80,7 +79,6 @@ plt.ylabel('MAE')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper left')
 plt.show()
-
 
 #%%
 score = model.evaluate(X_test, y_test, batch_size = 1)
