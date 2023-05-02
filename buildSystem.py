@@ -2,18 +2,9 @@
 """
 Created on Wed Apr 19 10:07:00 2023
 
-@author: jacky
+@author: Yu Chia Cheng
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 20 20:22:22 2023
-
-@author: Ychia
-
-
-
-"""
 import string
 import os
 import numpy as np
@@ -38,9 +29,7 @@ val_ood = LmdbDataset({"src": "data/oc22/is2re-total/val_ood"})
 data_source = train
 #%%=============================FOR TEST DATA==================================
 #%%
-
-
-def findGridSize(case):
+def findGridSize(case): #This is for finding the proper system grid size
     cells = data_source[case].cell[0].tolist()
     spacing = 0.5   # angstroms # set the spacing here
     nx, ny, nz = np.ceil(np.diag(cells) / spacing).astype(int)
@@ -63,8 +52,8 @@ for i in range(len(data_source)):
 print(f'The size of the grid world can be set as ({maxx}, {maxy}, {maxz})')
 del result, x, y, z, i
 #%%
-@jit
-def getsymbols(case,atomlist):
+@jit #@jit is for accelerate the computation speed using Numba, some warnings might pop up, just ignore them.
+def getsymbols(case,atomlist): 
     symbols = [element(int(atomic_number)).symbol for atomic_number in atomlist]
     return symbols
 @jit
@@ -151,14 +140,13 @@ for case in sampled_indices:
     system_models.append(system_model)
 
 np.savez('system_models.npz', *system_models)
-
-# code to measure execution time of
-
 end_time = time.time()
 
 total_time = end_time - start_time
 print(f"Execution time: {total_time} seconds")
 #%%
+"""
+#This is for testing the computing time for building 1 grid system, you can skip this block.
 import warnings
 warnings.filterwarnings("ignore", category=numba.NumbaPerformanceWarning)
 warnings.filterwarnings("ignore", category=numba.NumbaDeprecationWarning)
@@ -171,13 +159,14 @@ system_model = system_model.astype(int)
 end_time = time.time()
 total_time = end_time - start_time
 print(f"Execution time: {total_time} seconds")
-#%%
-
+"""
+#%% get the labels of data in system_model.npz
 system_labels = []
 for case in sampled_indices:
     system_labels.append(data_source[case].y_relaxed)
-    
-#%%
+#after running this code above, you have to create a .py file and store this variable.
+
+#%% plot the relaxed energy distribution
 fig = plt.figure(figsize=(8, 6), dpi=300)
 plt.hist(y_relaxed, bins=25)
 plt.xlim(-2000, 500)
