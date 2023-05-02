@@ -7,7 +7,7 @@ This project aims to predict the relaxed energy of a material's structure using 
 
 ## Process Details
 ### I. Setting Environment
-Follow the link to set environment : [Installation](https://github.com/Open-Catalyst-Project/ocp/blob/main/INSTALL.md)
+Follow the link to set environment : [Installation](https://github.com/Open-Catalyst-Project/ocp/blob/main/INSTALL.md)  
 I had some errors when setting up the environment and the solutions are down below. Hope it helps!
 
 **Step1.** There might be error in the step ```mamba env create -f env.yml```, then you can manually install
