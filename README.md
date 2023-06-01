@@ -3,6 +3,9 @@ The dataset of this project (OC2022 IS2RE) is obtained from here : [Open Catalys
 
 ## Project Description
 
+>**Note**
+>New 2DCNN approach description is at the bottom of the page!
+
 This project aims to predict the relaxed energy of a material's structure using various machine learning techniques. The goal is to eliminate the need for tedious DFT calculations and iterations, thereby increasing the efficiency of designing electrocatalysts.
 
 ## Process Details
@@ -71,6 +74,18 @@ The training data is saved as `'system_models.npz'`, and the label (y_relaxed, w
 
 After building the 3D grid system, we can start using the data to do 3D convolution.
 I've done this by using the package in Tensorflow.
+
+### V. 2D Convolution Neural Network (2DConv.py)
+
+The 3D CNN model requires relatively large space to store 1 training data. It turns out that only 500 data points take up more than 60GB of memory, which is not efficient.
+
+The data of the 2D CNN model contains 3 adjacency matrices:
+
+1. Distance between atoms.
+2. Angles between atoms.
+3. Diagonal matrix (atomic numbers).
+
+
 
 
 
