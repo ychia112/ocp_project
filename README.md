@@ -85,7 +85,15 @@ The data of the 2D CNN model contains 3 adjacency matrices:
 2. Angles between atoms.
 3. Diagonal matrix (atomic numbers).
 
+The 2DConv.py code is designed for GPU computation, which means you need to install the CUDA toolkit and cuDNN in your environment. It is completely fine to train the model using only the CPU, but it will take more time.
 
+The 2DConv_server.py code is intended for the server of our lab. You can run the code by using the command python 2DConv_server.py. If you want to edit the code, there are two ways:
 
+1. Modify the code on your own computer and then upload it to the server.
+2. Use the command vi 2DConv_server.py to edit the code directly in the command line interface.
+
+>**Note**
+>Before using the GPU of server, you have to check the GPU status by `nvidia-smi`.
+>We use the 4th GPU and the conda environment `AI`.
 
 
