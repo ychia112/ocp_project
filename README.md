@@ -3,7 +3,7 @@ The dataset of this project (OC2022 IS2RE) is obtained from here : [Open Catalys
 
 ## Project Description
 
->**Note**
+>**Note**  
 >New 2DCNN approach description is at the bottom of the page!
 
 This project aims to predict the relaxed energy of a material's structure using various machine learning techniques. The goal is to eliminate the need for tedious DFT calculations and iterations, thereby increasing the efficiency of designing electrocatalysts.
@@ -92,8 +92,18 @@ The 2DConv_server.py code is intended for the server of our lab. You can run the
 1. Modify the code on your own computer and then upload it to the server.
 2. Use the command vi 2DConv_server.py to edit the code directly in the command line interface.
 
->**Note**
+>**Note**  
 >Before using the GPU of server, you have to check the GPU status by `nvidia-smi`.
 >We use the 4th GPU and the conda environment `AI`.
 
+## Future Plans for the Project
 
+The aforementioned predictive models are established as structure-energy forward models. The goal of this project is to train an accurate forward model using a large amount of density functional theory (DFT) data obtained from the Open Catalyst Project. Subsequently, the predicted energy values will be utilized as the reward mechanism in reinforcement learning.
+
+Our ultimate objective is to infer the possible structure of a catalyst based on desired properties (in this project, the role of energy). We aim to implement this using reinforcement learning. The following is a brief overview of the process:
+
+Reinforcement learning requires an environment to provide the agent with exploration opportunities, where the agent receives a reward at each visited state. In the context of the current structure-energy model, the environment represents atomic structures. The agent moves within different atomic structures, with each step representing a different structure. After each move, the agent utilizes the new structure as input to the forward model to predict its energy, which is then used as the reward.
+
+For example, assuming the target energy is 500, but the predicted energy for a particular structure is 200, the reward might be -300. If the agent reaches a new structure and the predicted energy is 480, the reward could be set as -20. The simplest objective in reinforcement learning is to maximize the reward. Through multiple attempts, the agent gradually converges towards the desired energy.
+
+Please note that the above explanation is a basic description of reinforcement learning and how it relates to the structure-energy model.
