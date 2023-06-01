@@ -107,3 +107,5 @@ Reinforcement learning requires an environment to provide the agent with explora
 For example, assuming the target energy is 500, but the predicted energy for a particular structure is 200, the reward might be -300. If the agent reaches a new structure and the predicted energy is 480, the reward could be set as -20. The simplest objective in reinforcement learning is to maximize the reward. Through multiple attempts, the agent gradually converges towards the desired energy.
 
 Please note that the above explanation is a basic description of reinforcement learning and how it relates to the structure-energy model.
+
+The `rlmodel.py` code and the PowerPoint presentation provide a concise example of reinforcement learning. However, please note that the results obtained from this code is incorrect, and the code itself may be incomplete. The provided code and presentation serve as a starting point or demonstration, but further modifications and enhancements may be necessary to achieve desirable results in real-world scenarios.
